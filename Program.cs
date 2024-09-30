@@ -1,23 +1,19 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Linq.Expressions;
-using System.Runtime.ExceptionServices;
-using System.Transactions;
 using Week2.Entities;
+using Week2.Exceptions;
 
 namespace Week2
 {
     internal class Program
     {
         static bool exit;
-        static List<Contacts> contactsList;
+        static List<Contacts> contactsList = new List<Contacts>();
         static void Main(string[] args)
         {
 
             while (!exit)
             {
                 DisplayMenu();
-
             }
            
         }
@@ -59,8 +55,7 @@ namespace Week2
 
         static void Create()
         {
-            //using FileStream createStream = File.Create(FileName);
-            //await JsonSerializer.SerializeAsync
+
             Console.WriteLine($"New Contact{Environment.NewLine}-----------");
             Console.Write("First Name: ");
             string firstName = Console.ReadLine().Trim();
@@ -79,6 +74,7 @@ namespace Week2
             bool InvalidPhoneNumber = false;
             while (!InvalidPhoneNumber)
             {
+                
                 try
                 {
                     contactsList.Add(new Contacts
@@ -88,11 +84,22 @@ namespace Week2
                         PhoneNumber = completePhoneNumber
 
                     });
-
-                    if(countryCode > 3 || countryCode < 1 )
+                    foreach (new Contacts in contactsList)
                     {
-                        throw new Exception("Enter a valid country code");
+                        
                     }
+                    if (int.TryParse(countryCode, out int countryCodeint))
+                    {
+
+                    }
+                    if (countryCode.Length > 3 || countryCode.Length < 1)
+                    {
+                        Console.Write("Enter a valid Country Code");
+                    }
+                }
+                catch( InvalidNumberExceptions e)
+                {
+                    
                 }
             }
         }
@@ -107,6 +114,14 @@ namespace Week2
             File.WriteAllText(FileName, json);
             Console.WriteLine($"Contact saved successfully to {path}!");
         }
+        //static void PhoneBook()
+        //{
+        //    while (!exit)
+        //    {
+        //        Console.WriteLine($"Select an option{Environment.NewLine}");
+        //        Console.WriteLine("1. ");
+        //    }
+        //}
         static void Exit()
         {
             exit = true;
