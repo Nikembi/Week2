@@ -2,6 +2,7 @@
 
 namespace Week2.Exceptions
 {
+    [Serializable]
     internal class InvalidPhoneNumberException : Exception
     {
         // Default constructor

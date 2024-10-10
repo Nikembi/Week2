@@ -55,7 +55,6 @@ namespace Week2
 
         static void Create()
         {
-
             Console.WriteLine($"New Contact{Environment.NewLine}-----------");
             Console.Write("First Name: ");
             string firstName = Console.ReadLine().Trim();
@@ -97,10 +96,11 @@ namespace Week2
                         Console.Write("Enter a valid Country Code");
                     }
                 }
-                catch( InvalidNumberExceptions e)
+                catch (InvalidNumberException e)
                 {
-                    
+                    Console.WriteLine("Enter a valid country code");
                 }
+
             }
         }
         static void SaveContacts()
